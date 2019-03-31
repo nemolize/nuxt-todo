@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/nemolize/nuxt-todo.svg?style=svg)](https://circleci.com/gh/nemolize/nuxt-todo)
+
 # nuxt-todo
 
 [Nuxt.js](https://nuxtjs.org)を用いたTodoリスト管理のサンプルアプリケーション

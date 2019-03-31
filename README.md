@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/nemolize/nuxt-todo.svg?style=svg)](https://circleci.com/gh/nemolize/nuxt-todo)
+
 # nuxt-todo
 
 A todo list manager example made with Nuxt.js
