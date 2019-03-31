@@ -9,11 +9,11 @@
         <button class="delete" aria-label="close" @click="cancelRemove()" />
       </header>
       <section class="modal-card-body">
-        <p>Are you sure to delete the following item?</p>
-        <div class="notification">
-          <div class="has-circle-indicator">
-            name: <strong>{{ deleteTarget.name }}</strong>
-          </div>
+        <div class="content">
+          <p>Are you sure to delete the following item?</p>
+          <p class="tag">
+            name:&nbsp;<strong>{{ deleteTarget.name }}</strong>
+          </p>
         </div>
       </section>
       <footer class="modal-card-foot is-justified-end">
