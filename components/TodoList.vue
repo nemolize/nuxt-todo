@@ -1,13 +1,13 @@
 <template>
   <div class="container todolist">
-    <form @submit.prevent="add(newTodo)" class="field has-addons">
+    <form class="field has-addons" @submit.prevent="add(newTodo)">
       <div class="control is-expanded">
         <input
           v-model="newTodo.name"
           class="input"
           type="text"
           placeholder="Name"
-        />
+        >
       </div>
       <div class="control">
         <button :disabled="!newTodo.name" class="button is-primary">
@@ -32,8 +32,8 @@
           <td>{{ todo.name }}</td>
           <td>
             <button
-              @click="$refs.deleteModal.askRemove(todo)"
               class="button is-danger"
+              @click="$refs.deleteModal.askRemove(todo)"
             >
               delete
             </button>

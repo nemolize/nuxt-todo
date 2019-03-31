@@ -6,21 +6,21 @@
         <p class="modal-card-title">
           Deleting an item
         </p>
-        <button @click="cancelRemove()" class="delete" aria-label="close" />
+        <button class="delete" aria-label="close" @click="cancelRemove()" />
       </header>
       <section class="modal-card-body">
         <p>Are you sure to delete the following item?</p>
         <div class="notification">
-        <div class="has-circle-indicator">
-          name: <strong>{{ deleteTarget.name }}</strong>
-        </div>
+          <div class="has-circle-indicator">
+            name: <strong>{{ deleteTarget.name }}</strong>
+          </div>
         </div>
       </section>
       <footer class="modal-card-foot is-justified-end">
-        <button @click="remove()" class="button is-danger is-pulled-right">
+        <button class="button is-danger is-pulled-right" @click="remove()">
           Delete
         </button>
-        <button @click="cancelRemove()" class="button">
+        <button class="button" @click="cancelRemove()">
           Cancel
         </button>
       </footer>
