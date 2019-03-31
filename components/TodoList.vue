@@ -30,13 +30,37 @@
           <td>{{ todo.id }}</td>
           <td>{{ todo.name }}</td>
           <td>
-            <button @click="remove(todo.id)" class="button is-danger">
+            <button @click="askRemove(todo)" class="button is-danger">
               delete
             </button>
           </td>
         </tr>
       </tbody>
     </table>
+
+    <div class="modal" :class="{ 'is-active': isModalActive }">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Deleting an item</p>
+          <button
+            @click="cancelRemove()"
+            class="delete"
+            aria-label="close"
+          ></button>
+        </header>
+        <section class="modal-card-body">
+          Are you sure to delete this item?
+          {{ deleteTarget }}
+        </section>
+        <footer class="modal-card-foot is-justified-end">
+          <button @click="remove()" class="button is-danger is-pulled-right">
+            Delete
+          </button>
+          <button @click="cancelRemove()" class="button">Cancel</button>
+        </footer>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -50,7 +74,9 @@ export default {
     todos: [{ id: getNewIndex(), name: 'Buy a milk for wife' }],
     newTodo: {
       name: ''
-    }
+    },
+    isModalActive: false,
+    deleteTarget: null
   }),
   methods: {
     add(newTodo) {
@@ -60,8 +86,21 @@ export default {
     reset() {
       this.newTodo.name = ''
     },
-    remove(id) {
-      this.todos = this.todos.filter(todo => todo.id !== id)
+    askRemove(todo) {
+      this.isModalActive = true
+      this.deleteTarget = todo
+    },
+    cancelRemove() {
+      this.deleteTarget = null
+      this.closeModal()
+    },
+    closeModal() {
+      this.isModalActive = false
+    },
+    remove() {
+      this.todos = this.todos.filter(({ id }) => id !== this.deleteTarget.id)
+      this.deleteTarget = null
+      this.closeModal()
     }
   }
 }
@@ -74,5 +113,8 @@ export default {
 }
 th.is-fullwidth {
   width: 100%;
+}
+.is-justified-end {
+  justify-content: flex-end;
 }
 </style>
