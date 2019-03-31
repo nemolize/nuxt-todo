@@ -8,10 +8,11 @@ Demo:
 https://nuxt-todo.now.sh/
 
 ##### Features
-* Add/Delete including confirm modal on delete
+* Add/Delete, and Toggle including confirm modal on delete
+* `Vuex` state management
   
 ##### Others
-* While this application is intended as an example of Nuxt.js, [TypeScript](https://www.typescriptlang.org/) is not used.
+* While this application is intended to be an example of Nuxt.js, [TypeScript](https://www.typescriptlang.org/) is not used.
 * [Bulma](http://bulma.io) for styling
   * `TodoList` component uses variable of `bulma` with `@import`
 * [now](https://zeit.co/now) for demo site deploy

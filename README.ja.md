@@ -7,8 +7,9 @@
 デモ: https://nuxt-todo.now.sh/
 
 ##### 機能
-* Todoエントリの追加と削除
+* Todoエントリの追加と削除、完了フラグの制御
   * 削除時の確認モーダルの実装を含む
+* `Vuex`を用いたステート管理
 
 #### その他
 * `Nuxt.js`のサンプルとしての立ち位置を重視し[TypeScript](https://www.typescriptlang.org/)は導入せず、Vanilla Next.jsでの実装とした。
