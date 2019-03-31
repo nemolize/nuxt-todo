@@ -7,10 +7,10 @@
           class="input"
           type="text"
           placeholder="Name"
-        />
+        >
       </div>
       <div class="control">
-        <button class="button is-primary" :disabled="!newTodo.name">
+        <button :disabled="!newTodo.name" class="button is-primary">
           add
         </button>
       </div>
@@ -20,7 +20,9 @@
       <thead>
         <tr>
           <th>#</th>
-          <th class="is-fullwidth">Name</th>
+          <th class="is-fullwidth">
+            Name
+          </th>
           <th>Action</th>
         </tr>
       </thead>
@@ -29,53 +31,34 @@
           <td>{{ todo.id }}</td>
           <td>{{ todo.name }}</td>
           <td>
-            <button @click="askRemove(todo)" class="button is-danger">
+            <button
+              @click="$refs.deleteModal.askRemove(todo)"
+              class="button is-danger"
+            >
               delete
             </button>
           </td>
         </tr>
       </tbody>
     </table>
-
-    <div class="modal" :class="{ 'is-active': isModalActive }">
-      <div class="modal-background"></div>
-      <div class="modal-card">
-        <header class="modal-card-head">
-          <p class="modal-card-title">Deleting an item</p>
-          <button
-            @click="cancelRemove()"
-            class="delete"
-            aria-label="close"
-          ></button>
-        </header>
-        <section class="modal-card-body">
-          Are you sure to delete this item?
-          {{ deleteTarget }}
-        </section>
-        <footer class="modal-card-foot is-justified-end">
-          <button @click="remove()" class="button is-danger is-pulled-right">
-            Delete
-          </button>
-          <button @click="cancelRemove()" class="button">Cancel</button>
-        </footer>
-      </div>
-    </div>
+    <DeleteModal ref="deleteModal" @remove="remove" />
   </div>
 </template>
 
 <script>
+import DeleteModal from './DeleteModal'
+
 let lastIndex = 1
 const getNewIndex = () => lastIndex++
 
 export default {
   name: 'TodoList',
+  components: { DeleteModal },
   data: () => ({
     todos: [{ id: getNewIndex(), name: 'Buy a milk for wife' }],
     newTodo: {
       name: ''
-    },
-    isModalActive: false,
-    deleteTarget: null
+    }
   }),
   methods: {
     add(newTodo) {
@@ -85,21 +68,8 @@ export default {
     reset() {
       this.newTodo.name = ''
     },
-    askRemove(todo) {
-      this.isModalActive = true
-      this.deleteTarget = todo
-    },
-    cancelRemove() {
-      this.deleteTarget = null
-      this.closeModal()
-    },
-    closeModal() {
-      this.isModalActive = false
-    },
-    remove() {
-      this.todos = this.todos.filter(({ id }) => id !== this.deleteTarget.id)
-      this.deleteTarget = null
-      this.closeModal()
+    remove(emit) {
+      this.todos = this.todos.filter(({ id }) => id !== emit.id)
     }
   }
 }
