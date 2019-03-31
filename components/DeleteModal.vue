@@ -6,7 +6,7 @@
         <p class="modal-card-title">
           Deleting an item
         </p>
-        <button class="delete" aria-label="close" @click="cancelRemove()" />
+        <button @click="cancelRemove()" class="delete" aria-label="close" />
       </header>
       <section class="modal-card-body">
         <div class="content">
@@ -17,10 +17,10 @@
         </div>
       </section>
       <footer class="modal-card-foot is-justified-end">
-        <button class="button is-danger is-pulled-right" @click="remove()">
+        <button @click="remove()" class="button is-danger is-pulled-right">
           Delete
         </button>
-        <button class="button" @click="cancelRemove()">
+        <button @click="cancelRemove()" class="button">
           Cancel
         </button>
       </footer>

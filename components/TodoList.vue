@@ -1,21 +1,16 @@
 <template>
   <div class="container todolist">
-    <form class="field has-addons" @submit.prevent="add(newTodo)">
+    <form @submit.prevent="add(name)" class="field has-addons">
       <div class="control is-expanded has-icons-left">
-        <input
-          v-model="newTodo.name"
-          class="input"
-          type="text"
-          placeholder="Name"
-        />
+        <input v-model="name" class="input" type="text" placeholder="Name">
         <span class="icon is-small is-left">
-          <i class="fas fa-pen"></i>
+          <i class="fas fa-pen" />
         </span>
       </div>
       <div class="control">
-        <button :disabled="!newTodo.name" class="button is-primary">
+        <button :disabled="!name" class="button is-primary">
           <span class="icon is-small">
-            <i class="fas fa-check"></i>
+            <i class="fas fa-check" />
           </span>
           <span>add</span>
         </button>
@@ -25,7 +20,7 @@
     <table class="table is-fullwidth is-striped is-hoverable">
       <thead>
         <tr>
-          <th>#</th>
+          <th>Done</th>
           <th class="is-fullwidth">
             Name
           </th>
@@ -34,12 +29,16 @@
       </thead>
       <tbody>
         <tr v-for="todo in todos" :key="todo.id">
-          <td>{{ todo.id }}</td>
+          <td class="has-text-centered">
+            <label class="checkbox">
+              <input @change="toggle(todo)" :checked="todo.done" type="checkbox">
+            </label>
+          </td>
           <td>{{ todo.name }}</td>
           <td>
             <button
-              class="button is-danger"
               @click="$refs.deleteModal.askRemove(todo)"
+              class="button is-danger"
             >
               <span class="icon is-small"><i class="fas fa-times" /></span>
               <span>delete</span>
@@ -53,31 +52,36 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 import DeleteModal from './DeleteModal'
 
-let lastIndex = 1
-const getNewIndex = () => lastIndex++
+// let lastIndex = 1
+// const getNewIndex = () => lastIndex++
 
 export default {
   name: 'TodoList',
   components: { DeleteModal },
   data: () => ({
-    todos: [{ id: getNewIndex(), name: 'Buy a milk for wife' }],
-    newTodo: {
-      name: ''
-    }
+    name: ''
   }),
-  methods: {
-    add(newTodo) {
-      this.todos.push({ id: getNewIndex(), ...newTodo })
-      this.reset()
-    },
-    reset() {
-      this.newTodo.name = ''
-    },
-    remove(emit) {
-      this.todos = this.todos.filter(({ id }) => id !== emit.id)
+  computed: {
+    todos() {
+      return this.$store.state.todos.list
     }
+  },
+  methods: {
+    remove(todo) {
+      this.removeTodo(todo)
+    },
+    add(name) {
+      this.addTodo(name)
+      this.name = ''
+    },
+    ...mapMutations({
+      addTodo: 'todos/add',
+      toggle: 'todos/toggle',
+      removeTodo: 'todos/remove'
+    })
   }
 }
 </script>
