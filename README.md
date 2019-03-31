@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/nemolize/nuxt-todo.svg?style=svg)](https://circleci.com/gh/nemolize/nuxt-todo)
+[![CircleCI](https://circleci.com/gh/nemolize/nuxt-todo/tree/master.svg?style=svg)](https://circleci.com/gh/nemolize/nuxt-todo/tree/master)
 
 # nuxt-todo
 
