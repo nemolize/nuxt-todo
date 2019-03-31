@@ -27,7 +27,9 @@ jobs:
     - *save_cache_node_modules
     - run: yarn generate
     - deploy:
-        command: npx now alias -t ${NOW_TOKEN} $(npx now -t ${NOW_TOKEN} dist) nuxt-todo.now.sh
+        command: |
+          npm config set unsafe-perm true # https://goo.gl/LH2aMY
+          npx now alias -t ${NOW_TOKEN} $(npx now -t ${NOW_TOKEN} dist) nuxt-todo.now.sh
 
 workflows:
   version: 2
