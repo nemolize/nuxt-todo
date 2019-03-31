@@ -25,6 +25,8 @@ jobs:
     - *restore_cache_node_modules
     - run: yarn
     - *save_cache_node_modules
+    - run: yarn lint
+    - run: yarn test
     - run: yarn generate
     - deploy:
         command: |

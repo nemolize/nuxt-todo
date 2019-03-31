@@ -1,3 +1,4 @@
+/* eslint-disable nuxt/no-cjs-in-config */
 const pkg = require('./package')
 
 module.exports = {

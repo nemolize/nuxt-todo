@@ -7,7 +7,7 @@
           class="input"
           type="text"
           placeholder="Name"
-        >
+        />
       </div>
       <div class="control">
         <button :disabled="!newTodo.name" class="button is-primary">
@@ -27,7 +27,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="todo in todos">
+        <tr v-for="todo in todos" :key="todo.id">
           <td>{{ todo.id }}</td>
           <td>{{ todo.name }}</td>
           <td>
