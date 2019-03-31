@@ -1,17 +1,23 @@
 <template>
   <div class="container todolist">
     <form class="field has-addons" @submit.prevent="add(newTodo)">
-      <div class="control is-expanded">
+      <div class="control is-expanded has-icons-left">
         <input
           v-model="newTodo.name"
           class="input"
           type="text"
           placeholder="Name"
-        >
+        />
+        <span class="icon is-small is-left">
+          <i class="fas fa-pen"></i>
+        </span>
       </div>
       <div class="control">
         <button :disabled="!newTodo.name" class="button is-primary">
-          add
+          <span class="icon is-small">
+            <i class="fas fa-check"></i>
+          </span>
+          <span>add</span>
         </button>
       </div>
     </form>
@@ -35,7 +41,8 @@
               class="button is-danger"
               @click="$refs.deleteModal.askRemove(todo)"
             >
-              delete
+              <span class="icon is-small"><i class="fas fa-times" /></span>
+              <span>delete</span>
             </button>
           </td>
         </tr>
