@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ 'is-active': isModalActive }" class="modal">
+  <div v-if="isModalActive" class="modal is-active">
     <div class="modal-background" />
     <div class="modal-card">
       <header class="modal-card-head">
@@ -9,8 +9,12 @@
         <button @click="cancelRemove()" class="delete" aria-label="close" />
       </header>
       <section class="modal-card-body">
-        Are you sure to delete this item?
-        {{ deleteTarget }}
+        <p>Are you sure to delete the following item?</p>
+        <div class="notification">
+        <div class="has-circle-indicator">
+          name: <strong>{{ deleteTarget.name }}</strong>
+        </div>
+        </div>
       </section>
       <footer class="modal-card-foot is-justified-end">
         <button @click="remove()" class="button is-danger is-pulled-right">
