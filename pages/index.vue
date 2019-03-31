@@ -5,6 +5,7 @@
         <div class="hero-body">
           <div class="container">
             <h1 class="title">
+              <i class="fa fa-clipboard-list" />
               nuxt-todo
             </h1>
             <h2 class="subtitle">
