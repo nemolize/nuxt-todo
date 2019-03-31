@@ -1,0 +1,36 @@
+version: 2
+
+defaults: &defaults
+  docker:
+  - image: node:lts-alpine
+
+_steps:
+  - &save_cache_node_modules
+    save_cache:
+      name: Saving node_modules as cache
+      key: node_modules-{{ checksum "yarn.lock" }}
+      paths:
+      - node_modules
+  - &restore_cache_node_modules
+    restore_cache:
+      name: Restoring cached node_modules
+      key: node_modules-{{ checksum "yarn.lock" }}
+
+jobs:
+  deploy:
+    <<: *defaults
+    steps:
+    - run: apk add --no-cache ca-certificates
+    - checkout
+    - *restore_cache_node_modules
+    - run: yarn
+    - *save_cache_node_modules
+    - run: yarn generate
+    - deploy:
+        command: npx now alias -t ${NOW_TOKEN} $(npx now -t ${NOW_TOKEN} dist) nuxt-todo.now.sh
+
+workflows:
+  version: 2
+  deploy:
+    jobs:
+    - deploy
