@@ -74,9 +74,12 @@ export default {
       this.addTodo(name)
       this.name = ''
     },
+    toggle(todo) {
+      this.updateTodo({ ...todo, done: true })
+    },
     ...mapMutations({
       addTodo: 'todos/add',
-      toggle: 'todos/toggle',
+      updateTodo: 'todos/update',
       removeTodo: 'todos/remove'
     })
   }

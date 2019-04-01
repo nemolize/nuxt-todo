@@ -18,7 +18,9 @@ export const mutations = {
   remove(state, todo) {
     state.list = state.list.filter(t => t !== todo)
   },
-  toggle(state, todo) {
-    todo.done = !todo.done
+  update(state, todo) {
+    state.list
+      .filter(({ id }) => id === todo.id)
+      .forEach(t => Object.assign(t, todo))
   }
 }
