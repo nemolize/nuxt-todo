@@ -55,9 +55,6 @@
 import { mapMutations } from 'vuex'
 import DeleteModal from './DeleteModal'
 
-// let lastIndex = 1
-// const getNewIndex = () => lastIndex++
-
 export default {
   name: 'TodoList',
   components: { DeleteModal },
