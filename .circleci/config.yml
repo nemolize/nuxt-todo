@@ -51,7 +51,7 @@ jobs:
       - deploy:
           command: |
             npm config set unsafe-perm true # https://goo.gl/LH2aMY
-            npx now alias -t ${NOW_TOKEN} $(npx now -t ${NOW_TOKEN} dist) nuxt-todo.now.sh
+            npx now alias -t ${NOW_TOKEN} $(npx now -n nuxt-todo -t ${NOW_TOKEN} dist) nuxt-todo.now.sh
 
 workflows:
   version: 2
