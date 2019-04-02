@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isModalActive" class="modal is-active">
+  <div v-if="!!deleteTarget" class="modal is-active">
     <div class="modal-background" />
     <div class="modal-card">
       <header class="modal-card-head">
@@ -32,20 +32,17 @@
 export default {
   name: 'DeleteModal',
   data: () => ({
-    isModalActive: false,
     deleteTarget: null
   }),
   methods: {
     askRemove(todo) {
-      this.isModalActive = true
       this.deleteTarget = todo
     },
     cancelRemove() {
-      this.deleteTarget = null
       this.closeModal()
     },
     closeModal() {
-      this.isModalActive = false
+      this.deleteTarget = null
     },
     remove() {
       this.closeModal()
