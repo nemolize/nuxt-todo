@@ -10,9 +10,6 @@ const data = jsonString
       counter: 3
     }
 
-const persist = state =>
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
-
 export const state = () => data
 export const mutations = {
   add(state, name) {
@@ -21,15 +18,19 @@ export const mutations = {
       done: false,
       name
     })
-    persist(state)
+    this.commit('persist', state)
   },
   remove(state, todo) {
     state.list = state.list.filter(({ id }) => id !== todo.id)
-    persist(state)
+    this.commit('persist', state)
   },
   update(state, todo) {
     state.list
       .filter(({ id }) => id === todo.id)
       .forEach(t => Object.assign(t, todo))
+    this.commit('persist', state)
+  },
+  persist(state) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
   }
 }
