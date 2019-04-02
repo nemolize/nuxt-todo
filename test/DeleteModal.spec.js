@@ -37,6 +37,19 @@ describe('DeleteModal', () => {
           done()
         })
       })
+
+      describe('remove', () => {
+        beforeEach(() => {
+          wrapper.setMethods({ closeModal: jest.fn(() => {}) })
+          wrapper.vm.remove()
+        })
+
+        test('remove should be emitted the modal', () =>
+          expect(wrapper.emitted().remove).toBeTruthy())
+
+        test('closeModal should be called', () =>
+          expect(wrapper.vm.closeModal).toBeCalled())
+      })
     })
   })
 })
