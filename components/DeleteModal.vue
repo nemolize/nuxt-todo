@@ -45,9 +45,8 @@ export default {
       this.deleteTarget = null
     },
     remove() {
-      this.closeModal()
       this.$emit('remove', this.deleteTarget)
-      this.deleteTarget = null
+      this.closeModal()
     }
   }
 }
