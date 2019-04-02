@@ -39,6 +39,7 @@ jobs:
       - checkout
       - *restore_cache_node_modules
       - run: yarn test
+      - run: npx codecov --token=$CODECOV_TOKEN
   deploy:
     <<: *defaults
     steps:
