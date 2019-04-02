@@ -1,4 +1,4 @@
-const STORAGE_KEY = 'todos'
+export const STORAGE_KEY = 'todos'
 const jsonString = localStorage.getItem(STORAGE_KEY)
 const data = jsonString
   ? JSON.parse(jsonString)
