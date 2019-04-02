@@ -18,17 +18,17 @@ export const mutations = {
       done: false,
       name
     })
-    this.commit('persist', state)
+    this.commit('todos/persist', state)
   },
   remove(state, todo) {
     state.list = state.list.filter(({ id }) => id !== todo.id)
-    this.commit('persist', state)
+    this.commit('todos/persist', state)
   },
   update(state, todo) {
     state.list
       .filter(({ id }) => id === todo.id)
       .forEach(t => Object.assign(t, todo))
-    this.commit('persist', state)
+    this.commit('todos/persist', state)
   },
   persist(state) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
