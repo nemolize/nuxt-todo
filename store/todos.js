@@ -24,7 +24,7 @@ export const mutations = {
     persist(state)
   },
   remove(state, todo) {
-    state.list = state.list.filter(t => t !== todo)
+    state.list = state.list.filter(({ id }) => id !== todo.id)
     persist(state)
   },
   update(state, todo) {
