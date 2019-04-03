@@ -11,6 +11,7 @@ https://nuxt-todo.now.sh/
 ##### Features
 * Add/Delete, and Toggle including confirm modal on delete
 * `Vuex` state management
+* Persist data in `LocalStorage`
   
 ##### Others
 * While this application is intended to be an example of Nuxt.js, [TypeScript](https://www.typescriptlang.org/) is not used.
