@@ -1,16 +1,17 @@
 export const STORAGE_KEY = 'todos'
-const jsonString = localStorage.getItem(STORAGE_KEY)
-const data = jsonString
-  ? JSON.parse(jsonString)
-  : {
-      list: [
-        { id: 1, done: true, name: 'Buy a milk for my boss' },
-        { id: 2, done: false, name: 'Send a mail to a client' }
-      ],
-      counter: 3
-    }
 
-export const state = () => data
+export const state = () => {
+  const jsonString = localStorage.getItem(STORAGE_KEY)
+  return jsonString
+    ? JSON.parse(jsonString)
+    : {
+        list: [
+          { id: 1, done: true, name: 'Buy a milk for my boss' },
+          { id: 2, done: false, name: 'Send a mail to a client' }
+        ],
+        counter: 3
+      }
+}
 export const mutations = {
   add(state, name) {
     state.list.push({
