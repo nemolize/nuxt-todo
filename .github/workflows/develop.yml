@@ -1,0 +1,40 @@
+name: develop
+
+on:
+  push:
+    branches:
+      - '**'
+      - '!master'
+
+jobs:
+  check:
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - id: node_version
+        run: echo "##[set-output name=node;]$(cat ./.node-version)"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "${{ steps.node_version.outputs.node }}"
+
+      - name: cache node_modules
+        uses: actions/cache@v1
+        with:
+          id: node_modules
+          path: node_modules
+          key: app-yarn-${{ hashFiles('**\yarn.lock') }}
+          restore-keys: app-yarn-${{ hashFiles('**\yarn.lock') }}
+
+      - run: yarn
+        if: steps.node_modules.outputs.cache-hit != 'true'
+
+      - run: yarn lint
+      - run: yarn test
+      - run: npx codecov --token=$CODECOV_TOKEN
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
