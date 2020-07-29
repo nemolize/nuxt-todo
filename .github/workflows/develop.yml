@@ -36,7 +36,7 @@ jobs:
       - run: yarn test
       - run: npx codecov --token=$CODECOV_TOKEN
         env:
-          - CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
       - run: yarn generate
       - run: yarn netlify deploy --dir=./dist
         env:
