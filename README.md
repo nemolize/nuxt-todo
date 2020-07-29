@@ -6,7 +6,7 @@
 A todo list manager example made with Nuxt.js
 
 Demo:
-https://nuxt-todo.now.sh/
+https://nuxt-todo-demo.netlify.app/
 
 ##### Features
 * Add/Delete, and Toggle including confirm modal on delete

@@ -5,7 +5,7 @@
 
 [Nuxt.js](https://nuxtjs.org)を用いたTodoリスト管理のサンプルアプリケーション
 
-デモ: https://nuxt-todo.now.sh/
+デモ: https://nuxt-todo-demo.netlify.app/
 
 ##### 特徴
 * Todoエントリの追加と削除、完了フラグの制御
