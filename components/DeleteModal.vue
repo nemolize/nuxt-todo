@@ -6,7 +6,7 @@
         <p class="modal-card-title">
           Deleting an item
         </p>
-        <button @click="cancelRemove()" class="delete" aria-label="close" />
+        <button class="delete" aria-label="close" @click="cancelRemove()" />
       </header>
       <section class="modal-card-body">
         <div class="content">
@@ -17,10 +17,10 @@
         </div>
       </section>
       <footer class="modal-card-foot is-justified-end">
-        <button @click="remove()" class="button is-danger is-pulled-right">
+        <button class="button is-danger is-pulled-right" @click="remove()">
           Delete
         </button>
-        <button @click="cancelRemove()" class="button">
+        <button class="button" @click="cancelRemove()">
           Cancel
         </button>
       </footer>
@@ -32,7 +32,7 @@
 export default {
   name: 'DeleteModal',
   data: () => ({
-    deleteTarget: null
+    deleteTarget: null,
   }),
   methods: {
     askRemove(todo) {
@@ -47,7 +47,7 @@ export default {
     remove() {
       this.$emit('remove', this.deleteTarget)
       this.closeModal()
-    }
-  }
+    },
+  },
 }
 </script>

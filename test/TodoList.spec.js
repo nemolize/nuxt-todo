@@ -13,7 +13,9 @@ describe('TodoList', () => {
   beforeEach(() => {
     todo1 = { id: '1', name: 'title_1', done: false }
     store = new Vuex.Store({
-      modules: { todos: { ...todoStore, state: { list: [todo1], counter: 1 } } }
+      modules: {
+        todos: { ...todoStore, state: { list: [todo1], counter: 1 } },
+      },
     })
     wrapper = mount(TodoList, { store, localVue })
   })
@@ -32,7 +34,7 @@ describe('TodoList', () => {
 
     describe('on clicking checkbox of a todo', () => {
       test('toggle(todo) should be called', () => {
-        const mock = jest.fn(todo => todo)
+        const mock = jest.fn((todo) => todo)
         wrapper.setMethods({ toggle: mock })
         wrapper.find('input[type=checkbox]').trigger('click')
         expect(mock).toBeCalledWith(todo1)
@@ -52,7 +54,7 @@ describe('TodoList', () => {
 
     describe('methods', () => {
       describe('add', () => {
-        test('action addTodo(name) should be published', async done => {
+        test('action addTodo(name) should be published', async (done) => {
           wrapper.setMethods({ addTodo: jest.fn() })
           await wrapper.vm.add('dummyTodo')
           expect(wrapper.vm.addTodo).toBeCalledWith('dummyTodo')
@@ -60,7 +62,7 @@ describe('TodoList', () => {
         })
       })
       describe('remove', () => {
-        test('action removeTodo(todo) should be published with todo', async done => {
+        test('action removeTodo(todo) should be published with todo', async (done) => {
           wrapper.setMethods({ removeTodo: jest.fn() })
           await wrapper.vm.remove(todo1)
           expect(wrapper.vm.removeTodo).toBeCalledWith(todo1)
@@ -68,7 +70,7 @@ describe('TodoList', () => {
         })
       })
       describe('toggle', () => {
-        test('action updateTodo(todo) should be published with todo.done=true', async done => {
+        test('action updateTodo(todo) should be published with todo.done=true', async (done) => {
           wrapper.setMethods({ updateTodo: jest.fn(({ done }) => !!done) })
           await wrapper.vm.toggle(todo1)
           expect(wrapper.vm.updateTodo.mock.results[0].value).toBe(true)

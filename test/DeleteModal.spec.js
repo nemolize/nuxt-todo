@@ -5,7 +5,7 @@ const todo = { id: 1, name: 'title_1', done: false }
 
 describe('DeleteModal', () => {
   let wrapper
-  beforeEach(async done => {
+  beforeEach(async (done) => {
     wrapper = mount(DeleteModal)
     await wrapper.setData({ deleteTarget: todo })
     done()
@@ -14,7 +14,7 @@ describe('DeleteModal', () => {
   describe('script', () => {
     describe('methods', () => {
       describe('askRemove', () => {
-        test('activates modal DOM', async done => {
+        test('activates modal DOM', async (done) => {
           await wrapper.setData({ deleteTarget: todo })
           await wrapper.vm.askRemove(todo)
           expect(wrapper.find('div.modal.isactive')).toBeTruthy()
@@ -22,8 +22,8 @@ describe('DeleteModal', () => {
         })
       })
       describe('cancelRemove', () => {
-        test('cancelRemove() should be called', async done => {
-          await wrapper.setMethods({ closeModal: jest.fn(a => a) })
+        test('cancelRemove() should be called', async (done) => {
+          await wrapper.setMethods({ closeModal: jest.fn((a) => a) })
           await wrapper.vm.cancelRemove()
           expect(wrapper.vm.closeModal).toBeCalled()
           done()
@@ -31,7 +31,7 @@ describe('DeleteModal', () => {
       })
 
       describe('closeModal', () => {
-        test('closeModal() should close the modal', async done => {
+        test('closeModal() should close the modal', async (done) => {
           await wrapper.vm.closeModal()
           expect(wrapper.vm.deleteTarget).toEqual(null)
           done()

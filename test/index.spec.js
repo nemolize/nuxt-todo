@@ -3,12 +3,14 @@ import index from '../pages/index'
 
 describe('index', () => {
   let wrapper
-  beforeEach(() =>
-    (wrapper = mount(index, {
-      stubs: {
-        TodoList: true
-      }
-    })))
+  beforeEach(
+    () =>
+      (wrapper = mount(index, {
+        stubs: {
+          TodoList: true,
+        },
+      }))
+  )
   test('is a Vue instance', () => {
     expect(wrapper.isVueInstance()).toBeTruthy()
   })

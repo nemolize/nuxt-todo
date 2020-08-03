@@ -24,10 +24,7 @@ import TodoList from '../components/TodoList'
 
 export default {
   components: {
-    TodoList
-  }
+    TodoList,
+  },
 }
 </script>
-
-<style>
-</style>
