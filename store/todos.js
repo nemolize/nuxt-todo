@@ -7,9 +7,9 @@ export const state = () => {
     : {
         list: [
           { id: 1, done: true, name: 'Buy a milk for my boss' },
-          { id: 2, done: false, name: 'Send a mail to a client' }
+          { id: 2, done: false, name: 'Send a mail to a client' },
         ],
-        counter: 3
+        counter: 3,
       }
 }
 export const mutations = {
@@ -17,7 +17,7 @@ export const mutations = {
     state.list.push({
       id: state.counter++,
       done: false,
-      name
+      name,
     })
     this.commit('todos/persist', state)
   },
@@ -28,10 +28,10 @@ export const mutations = {
   update(state, todo) {
     state.list
       .filter(({ id }) => id === todo.id)
-      .forEach(t => Object.assign(t, todo))
+      .forEach((t) => Object.assign(t, todo))
     this.commit('todos/persist', state)
   },
   persist(state) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
-  }
+  },
 }

@@ -1,8 +1,8 @@
 <template>
   <div class="container todolist">
-    <form @submit.prevent="add(name)" class="field has-addons">
+    <form class="field has-addons" @submit.prevent="add(name)">
       <div class="control is-expanded has-icons-left">
-        <input v-model="name" class="input" type="text" placeholder="Name">
+        <input v-model="name" class="input" type="text" placeholder="Name" />
         <span class="icon is-small is-left">
           <i class="fas fa-pen" />
         </span>
@@ -31,14 +31,18 @@
         <tr v-for="todo in todos" :key="todo.id">
           <td class="has-text-centered">
             <label class="checkbox">
-              <input @change="toggle(todo)" :checked="todo.done" type="checkbox">
+              <input
+                :checked="todo.done"
+                type="checkbox"
+                @change="toggle(todo)"
+              />
             </label>
           </td>
           <td>{{ todo.name }}</td>
           <td>
             <button
-              @click="$refs.deleteModal.askRemove(todo)"
               class="button is-danger"
+              @click="$refs.deleteModal.askRemove(todo)"
             >
               <span class="icon is-small"><i class="fas fa-times" /></span>
               <span>delete</span>
@@ -59,12 +63,12 @@ export default {
   name: 'TodoList',
   components: { DeleteModal },
   data: () => ({
-    name: ''
+    name: '',
   }),
   computed: {
     todos() {
       return this.$store.state.todos.list
-    }
+    },
   },
   methods: {
     remove(todo) {
@@ -80,9 +84,9 @@ export default {
     ...mapMutations({
       addTodo: 'todos/add',
       updateTodo: 'todos/update',
-      removeTodo: 'todos/remove'
-    })
-  }
+      removeTodo: 'todos/remove',
+    }),
+  },
 }
 </script>
 

@@ -7,7 +7,7 @@ localVue.use(Vuex)
 
 const initialState = {
   list: [{ id: 1, done: true, name: 'initial item' }],
-  counter: 2
+  counter: 2,
 }
 
 describe('store/todos.js', () => {
@@ -23,11 +23,11 @@ describe('store/todos.js', () => {
         todos: {
           state,
           mutations: {
-            ...mutations
+            ...mutations,
           },
-          namespaced: true
-        }
-      }
+          namespaced: true,
+        },
+      },
     })
     store.replaceState({ todos: JSON.parse(JSON.stringify(initialState)) })
   })
@@ -43,9 +43,9 @@ describe('store/todos.js', () => {
         expect(store.state.todos).toEqual({
           list: [
             { id: 1, name: 'initial item', done: true },
-            { id: 2, name: 'added item', done: false }
+            { id: 2, name: 'added item', done: false },
           ],
-          counter: 3
+          counter: 3,
         }))
     })
 
@@ -60,12 +60,13 @@ describe('store/todos.js', () => {
         store.commit('todos/update', {
           id: 1,
           name: 'update item',
-          done: false
-        }))
+          done: false,
+        })
+      )
       test('should update an entry', () =>
         expect(store.state.todos).toEqual({
           list: [{ id: 1, name: 'update item', done: false }],
-          counter: 2
+          counter: 2,
         }))
     })
 
