@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import DeleteModal from '../components/DeleteModal'
+import DeleteModal from '@/components/DeleteModal'
 
 const todo = { id: 1, name: 'title_1', done: false }
 

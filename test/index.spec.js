@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import index from '../pages/index'
+import index from '@/pages/index'
 
 describe('index', () => {
   let wrapper

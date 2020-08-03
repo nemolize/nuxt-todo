@@ -1,7 +1,7 @@
 import Vuex from 'vuex'
 import { createLocalVue, mount } from '@vue/test-utils'
+import * as todoStore from '@/store/todos'
 import TodoList from '../components/TodoList'
-import * as todoStore from '../store/todos'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)

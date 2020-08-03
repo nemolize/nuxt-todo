@@ -1,6 +1,6 @@
 import Vuex from 'vuex'
 import { createLocalVue } from '@vue/test-utils'
-import { mutations, state, STORAGE_KEY } from '../store/todos'
+import { mutations, state, STORAGE_KEY } from '@/store/todos'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
