@@ -1,5 +1,7 @@
+/* @deprecated */
 export const STORAGE_KEY = 'todos'
 
+/* @deprecated */
 export const state = () => {
   const jsonString = localStorage.getItem(STORAGE_KEY)
   return jsonString
@@ -12,6 +14,8 @@ export const state = () => {
         counter: 3,
       }
 }
+
+/* @deprecated */
 export const mutations = {
   add(state, name) {
     state.list.push({
