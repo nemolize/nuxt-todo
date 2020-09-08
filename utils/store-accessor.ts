@@ -1,6 +1,6 @@
 import { Store } from 'vuex'
 import { getModule } from 'vuex-module-decorators'
-import Todo from '~/store/todo'
+import Todo from '~/store/todos'
 
 // eslint-disable-next-line import/no-mutable-exports
 let TodoStore: Todo

@@ -33,7 +33,7 @@ const getStorage = (): { todos: Todo[]; lastId: number } => {
 }
 
 @Module({
-  name: 'todo',
+  name: 'todos',
   stateFactory: true,
   namespaced: true,
 })

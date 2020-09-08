@@ -30,7 +30,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { Todo } from '~/store/todo'
+import { Todo } from '~/store/todos'
 
 @Component
 export default class DeleteModal extends Vue {

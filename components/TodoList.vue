@@ -58,7 +58,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { TodoStore } from '~/store'
-import { Todo } from '~/store/todo'
+import { Todo } from '~/store/todos'
 import DeleteModal from '~/components/DeleteModal.vue'
 
 @Component({
