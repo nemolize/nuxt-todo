@@ -38,61 +38,44 @@ const getStorage = (): { todos: Todo[]; lastId: number } => {
   namespaced: true,
 })
 export default class Todos extends VuexModule {
-  private todos: Todo[] = []
-
+  private _todos: Todo[] = []
   private lastId: number = 1
 
-  // constructor(module: VuexModule) {
-  //   super(module)
-  //
-  //   const storage = getStorage()
-  //   this.todos = storage.todos
-  //   this.lastId = storage.lastId
-  // }
-
-  public get getTodos() {
-    return this.todos
-  }
-
-  public get getTodo() {
-    return (id: Number) => this.todos.find((todo) => todo.id === id)
-  }
-
-  public get getTodoCount() {
-    return this.todos.length
+  public get todos() {
+    return this._todos
   }
 
   @Mutation
-  private add(todo: Todo) {
-    this.todos.push(todo)
+  private push(todo: Todo) {
+    this._todos.push(todo)
   }
 
   @Mutation
-  private remove(id: Number) {
-    this.todos = this.todos.filter((todo) => todo.id !== id)
+  private removeById(id: Number) {
+    this._todos = this._todos.filter((todo) => todo.id !== id)
   }
 
-  @Mutation set(todos: Todo[]) {
-    this.todos = todos
+  @Mutation
+  private setItems(todos: Todo[]) {
+    this._todos = todos
   }
 
-  @Mutation setLastId(lastId: number) {
+  @Mutation
+  private setLastId(lastId: number) {
     this.lastId = lastId
   }
 
   @Action({ rawError: true })
   public fetchTodos() {
-    // const { data } = await $axios.get<Todo[]>('/api/todos')
     const { todos, lastId } = getStorage()
-    this.set(todos)
+    this.setItems(todos)
     this.setLastId(lastId)
   }
 
   @Action({ rawError: true })
-  public createTodo(name: string) {
-    // const { data } = await $axios.post<Todo>('/api/todo', payload)
+  public add(name: string) {
     const newId = this.lastId + 1
-    this.add({
+    this.push({
       id: newId,
       name,
       done: false,
@@ -101,14 +84,14 @@ export default class Todos extends VuexModule {
   }
 
   @Action({ rawError: true })
-  deleteTodo(id: Todo['id']) {
-    this.remove(id)
+  remove(todo: Todo) {
+    this.removeById(todo.id)
   }
 
   @Action({ rawError: true })
   toggle(id: number) {
-    this.set(
-      this.todos.map((todo) => {
+    this.setItems(
+      this._todos.map((todo) => {
         if (todo.id !== id) return todo
         return { ...todo, done: !todo.done }
       })
