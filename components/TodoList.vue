@@ -56,30 +56,38 @@
 </template>
 
 <script lang="ts">
-import { TodoStore } from '@/store'
-import DeleteModal from './DeleteModal'
+import { Component, Vue } from 'vue-property-decorator'
+import { TodoStore } from '~/store'
 import { Todo } from '~/store/todo'
+import DeleteModal from '~/components/DeleteModal.vue'
 
-export default {
-  name: 'TodoList',
+@Component({
   components: { DeleteModal },
-  data() {
+})
+export default class TodoList extends Vue {
+  name: string = ''
+
+  constructor() {
+    super()
     TodoStore.fetchTodos()
-    return {
-      name: '',
-    }
-  },
-  computed: {
-    todos: () => TodoStore.getTodos,
-  },
-  methods: {
-    remove: (todo: Todo) => TodoStore.deleteTodo(todo.id),
-    add(name) {
-      TodoStore.createTodo(name)
-      this.name = ''
-    },
-    toggle: (todo: Todo) => TodoStore.toggle(todo.id),
-  },
+  }
+
+  get todos() {
+    return TodoStore.getTodos
+  }
+
+  remove(todo: Todo) {
+    TodoStore.deleteTodo(todo.id)
+  }
+
+  add(name: string) {
+    TodoStore.createTodo(name)
+    this.name = ''
+  }
+
+  toggle(todo: Todo) {
+    TodoStore.toggle(todo.id)
+  }
 }
 </script>
 

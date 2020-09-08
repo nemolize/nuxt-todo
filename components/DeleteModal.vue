@@ -28,26 +28,29 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'DeleteModal',
-  data: () => ({
-    deleteTarget: null,
-  }),
-  methods: {
-    askRemove(todo) {
-      this.deleteTarget = todo
-    },
-    cancelRemove() {
-      this.closeModal()
-    },
-    closeModal() {
-      this.deleteTarget = null
-    },
-    remove() {
-      this.$emit('remove', this.deleteTarget)
-      this.closeModal()
-    },
-  },
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+import { Todo } from '~/store/todo'
+
+@Component
+export default class DeleteModal extends Vue {
+  deleteTarget: Todo | null = null
+
+  askRemove(todo: Todo) {
+    this.deleteTarget = todo
+  }
+
+  cancelRemove() {
+    this.closeModal()
+  }
+
+  closeModal() {
+    this.deleteTarget = null
+  }
+
+  remove() {
+    this.$emit('remove', this.deleteTarget)
+    this.closeModal()
+  }
 }
 </script>
