@@ -1,6 +1,7 @@
 import Vuex from 'vuex'
 import { createLocalVue } from '@vue/test-utils'
-import { mutations, state, STORAGE_KEY } from '@/store/todos'
+import Todos, { STORAGE_KEY } from '~/store/todos'
+import { TodoStore } from '~/utils/store-accessor'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
@@ -10,8 +11,8 @@ const initialState = {
   counter: 2,
 }
 
-describe('store/todos.js', () => {
-  let store
+describe('store/todos.ts', () => {
+  let store: TodoStore
 
   beforeAll(() => {
     jest.spyOn(Storage.prototype, 'setItem')
