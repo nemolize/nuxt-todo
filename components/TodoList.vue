@@ -55,38 +55,39 @@
   </div>
 </template>
 
-<script>
-import { mapMutations } from 'vuex'
-import DeleteModal from './DeleteModal'
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+import { TodoStore } from '~/store'
+import { Todo } from '~/store/todos'
+import DeleteModal from '~/components/DeleteModal.vue'
 
-export default {
-  name: 'TodoList',
+@Component({
   components: { DeleteModal },
-  data: () => ({
-    name: '',
-  }),
-  computed: {
-    todos() {
-      return this.$store.state.todos.list
-    },
-  },
-  methods: {
-    remove(todo) {
-      this.removeTodo(todo)
-    },
-    add(name) {
-      this.addTodo(name)
-      this.name = ''
-    },
-    toggle(todo) {
-      this.updateTodo({ ...todo, done: true })
-    },
-    ...mapMutations({
-      addTodo: 'todos/add',
-      updateTodo: 'todos/update',
-      removeTodo: 'todos/remove',
-    }),
-  },
+})
+export default class TodoList extends Vue {
+  name: string = ''
+
+  constructor() {
+    super()
+    TodoStore.fetchTodos()
+  }
+
+  get todos() {
+    return TodoStore.todos
+  }
+
+  remove(todo: Todo) {
+    TodoStore.removeById(todo.id)
+  }
+
+  add(name: string) {
+    TodoStore.add(name)
+    this.name = ''
+  }
+
+  toggle(todo: Todo) {
+    TodoStore.toggle(todo.id)
+  }
 }
 </script>
 
