@@ -7,6 +7,11 @@ export type Todo = {
   done: boolean
 }
 
+export type TodoState = {
+  todos: Todo[]
+  lastId: number
+}
+
 const getStorage = (): { todos: Todo[]; lastId: number } => {
   const jsonString = localStorage.getItem(STORAGE_KEY)
 
@@ -38,31 +43,34 @@ const getStorage = (): { todos: Todo[]; lastId: number } => {
   namespaced: true,
 })
 export default class Todos extends VuexModule {
-  private _todos: Todo[] = []
-  private lastId: number = 1
+  todoState: TodoState = { todos: [], lastId: 0 }
 
-  public get todos() {
-    return this._todos
+  get todos() {
+    return this.todoState.todos
+  }
+
+  get lastId() {
+    return this.todoState.lastId
   }
 
   @Mutation
-  private push(todo: Todo) {
-    this._todos.push(todo)
-  }
-
-  @Mutation
-  private removeById(id: Number) {
-    this._todos = this._todos.filter((todo) => todo.id !== id)
+  removeById(id: Number) {
+    this.todoState.todos = this.todoState.todos.filter((todo) => todo.id !== id)
   }
 
   @Mutation
   private setItems(todos: Todo[]) {
-    this._todos = todos
+    this.todoState.todos = todos
   }
 
   @Mutation
   private setLastId(lastId: number) {
-    this.lastId = lastId
+    this.todoState.lastId = lastId
+  }
+
+  @Mutation
+  setState(state: TodoState) {
+    this.todoState = state
   }
 
   @Action({ rawError: true })
@@ -74,24 +82,15 @@ export default class Todos extends VuexModule {
 
   @Action({ rawError: true })
   public add(name: string) {
-    const newId = this.lastId + 1
-    this.push({
-      id: newId,
-      name,
-      done: false,
-    })
-    this.setLastId(newId)
-  }
-
-  @Action({ rawError: true })
-  remove(todo: Todo) {
-    this.removeById(todo.id)
+    const id = this.lastId + 1
+    this.setItems(this.todos.concat({ id, name, done: false }))
+    this.setLastId(id)
   }
 
   @Action({ rawError: true })
   toggle(id: number) {
     this.setItems(
-      this._todos.map((todo) => {
+      this.todos.map((todo) => {
         if (todo.id !== id) return todo
         return { ...todo, done: !todo.done }
       })

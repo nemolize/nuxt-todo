@@ -77,7 +77,7 @@ export default class TodoList extends Vue {
   }
 
   remove(todo: Todo) {
-    TodoStore.remove(todo)
+    TodoStore.removeById(todo.id)
   }
 
   add(name: string) {
