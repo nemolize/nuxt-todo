@@ -21,9 +21,7 @@
       <thead>
         <tr>
           <th>Done</th>
-          <th class="is-fullwidth">
-            Name
-          </th>
+          <th class="is-fullwidth">Name</th>
           <th>Action</th>
         </tr>
       </thead>
