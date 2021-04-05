@@ -8,9 +8,7 @@
               <i class="fa fa-clipboard-list" />
               nuxt-todo
             </h1>
-            <h2 class="subtitle">
-              A todo list manager made with Nuxt.js
-            </h2>
+            <h2 class="subtitle">A todo list manager made with Nuxt.js</h2>
           </div>
         </div>
       </section>

@@ -3,9 +3,7 @@
     <div class="modal-background" />
     <div class="modal-card">
       <header class="modal-card-head">
-        <p class="modal-card-title">
-          Deleting an item
-        </p>
+        <p class="modal-card-title">Deleting an item</p>
         <button class="delete" aria-label="close" @click="cancelRemove()" />
       </header>
       <section class="modal-card-body">
@@ -20,9 +18,7 @@
         <button class="button is-danger is-pulled-right" @click="remove()">
           Delete
         </button>
-        <button class="button" @click="cancelRemove()">
-          Cancel
-        </button>
+        <button class="button" @click="cancelRemove()">Cancel</button>
       </footer>
     </div>
   </div>
