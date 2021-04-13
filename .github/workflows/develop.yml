@@ -24,7 +24,7 @@ jobs:
           node-version: "${{ steps.node_version.outputs.node }}"
 
       - name: cache node_modules
-        uses: actions/cache@v2.1.4
+        uses: actions/cache@v2.1.5
         with:
           id: node_modules
           path: node_modules
