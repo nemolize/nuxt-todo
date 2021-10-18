@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v2.3.5
 
       - id: node_version
         run: echo "##[set-output name=node;]$(cat ./.node-version)"
